@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Categorias | AB Bombas Admin</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e3c72;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+        }
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar nav ul li {
+            margin-bottom: 1rem;
+        }
+        .sidebar nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .sidebar nav ul li a.active,
+        .sidebar nav ul li a:hover {
+            background-color: #2a5298;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 2rem;
+        }
+        .main-content h1 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+        }
+        .form-container, .table-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .form-container h2, .table-container h2 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 0.5rem;
+        }
+        form input, form textarea, form button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        form button {
+            background-color: #2a5298;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        form button:hover {
+            background-color: #1e3c72;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #1e3c72;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .actions button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .edit-btn { background-color: #28a745; color: white; }
+        .delete-btn { background-color: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>AB Bombas</h2>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="categorias.html" class="active">Gerenciar Categorias</a></li>
+                <li><a href="produtos.html">Gerenciar Produtos</a></li>
+                <li><a href="#" id="logout-btn">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <h1>Gerenciamento de Categorias</h1>
+
+        <div class="form-container">
+            <h2>Adicionar/Editar Categoria</h2>
+            <form id="category-form">
+                <input type="hidden" id="category-id">
+                <input type="text" id="category-name" placeholder="Nome da Categoria" required>
+                <textarea id="category-description" placeholder="Descrição"></textarea>
+                <input type="text" id="category-color" placeholder="Cor (ex: #ffffff)" required>
+                <button type="submit">Salvar Categoria</button>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <h2>Lista de Categorias</h2>
+            <table id="categories-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Cor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost/ab-bombas/api/categorias.php';
+        
+        // Função para carregar as categorias da API
+        async function loadCategories() {
+            try {
+                const response = await fetch(API_URL);
+                const categories = await response.json();
+                const tableBody = document.querySelector('#categories-table tbody');
+                tableBody.innerHTML = ''; // Limpa a tabela
+
+                categories.forEach(category => {
+                    const row = tableBody.insertRow();
+                    row.innerHTML = `
+                        <td>${category.id}</td>
+                        <td>${category.nome}</td>
+                        <td>${category.descricao}</td>
+                        <td>
+                            <div style="width: 20px; height: 20px; background-color: ${category.cor}; border-radius: 50%;"></div>
+                        </td>
+                        <td class="actions">
+                            <button class="edit-btn" onclick="editCategory(${category.id}, '${category.nome}', '${category.descricao}', '${category.cor}')">Editar</button>
+                            <button class="delete-btn" onclick="deleteCategory(${category.id})">Excluir</button>
+                        </td>
+                    `;
+                });
+            } catch (error) {
+                console.error('Erro ao carregar categorias:', error);
+                alert('Erro ao carregar categorias.');
+            }
+        }
+
+        // Função para adicionar ou editar uma categoria
+        document.getElementById('category-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('category-id').value;
+            const name = document.getElementById('category-name').value;
+            const description = document.getElementById('category-description').value;
+            const color = document.getElementById('category-color').value;
+
+            const method = id ? 'PUT' : 'POST';
+            const data = { nome: name, descricao: description, cor: color };
+            if (id) {
+                data.id = parseInt(id);
+            }
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    this.reset(); // Limpa o formulário
+                    document.getElementById('category-id').value = ''; // Reseta o ID
+                    loadCategories(); // Recarrega a lista
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Erro ao salvar categoria:', error);
+                alert('Erro ao salvar categoria.');
+            }
+        });
+
+        // Função para preencher o formulário para edição
+        function editCategory(id, name, description, color) {
+            document.getElementById('category-id').value = id;
+            document.getElementById('category-name').value = name;
+            document.getElementById('category-description').value = description;
+            document.getElementById('category-color').value = color;
+        }
+
+        // Função para deletar uma categoria
+        async function deleteCategory(id) {
+            if (confirm('Tem certeza que deseja excluir esta categoria?')) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: id })
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert(result.message);
+                        loadCategories();
+                    } else {
+                        alert(result.message);
+                    }
+                } catch (error) {
+                    console.error('Erro ao deletar categoria:', error);
+                    alert('Erro ao deletar categoria.');
+                }
+            }
+        }
+
+        // Carregar categorias ao carregar a página
+        document.addEventListener('DOMContentLoaded', loadCategories);
+
+        // Lógica de logout
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
