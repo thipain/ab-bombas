@@ -1,0 +1,40 @@
+Principais Funcionalidades Mapeadas:
+
+1 - Frontend (Cliente)
+
+Autenticação: Login/Cadastro com validação
+Navegação: Busca, categorias, produtos
+Carrinho: Adicionar, remover, calcular totais
+Checkout: Endereço, pagamento, confirmação
+Área do Cliente: Perfil, pedidos, endereços, lista desejos
+
+2 - Backend Admin (CRUD Completo)
+
+Produtos: Criar, Ler, Atualizar, Deletar
+Categorias: Gerenciamento completo com validações
+Usuários: Visualizar, editar, bloquear, permissões
+Pedidos: Acompanhar status, atualizar, comunicar cliente
+
+3 - Sistemas de Apoio
+
+Relatórios: Vendas, produtos, clientes, faturamento
+Configurações: Empresa, pagamento, frete, emails
+Banco de Dados: Estrutura completa de tabelas
+APIs: Correios, pagamento, email, SMS
+
+4 - Estrutura do Banco Sugerida:
+
+Usuários (id, nome, email, senha, tipo, status)
+Produtos (id, nome, descrição, preço, categoria_id, estoque)
+Categorias (id, nome, descrição, ícone, cor)
+Pedidos (id, usuario_id, status, total, data)
+Carrinho (id, usuario_id, produto_id, quantidade)
+
+5 - Próximos Passos de Implementação:
+
+Criar estrutura do banco de dados
+Desenvolver APIs REST em PHP
+Implementar autenticação JWT
+Criar painel administrativo
+Integrar gateway de pagamento
+Implementar sistema de frete
