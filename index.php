@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AB Bombas - Bombas para Piscina e Poço Artesiano</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-top {
+            background: rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-top-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 50px 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: #ff6b35;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .user-actions a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu li a:hover {
+            color: #ff6b35;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23e8f4f8" width="1200" height="400"/><path fill="%23b3d9e8" d="M0,200 Q300,150 600,200 T1200,200 V400 H0 V200Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2b;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Products */
+        .products {
+            padding: 4rem 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #e8f4f8, #b3d9e8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1e3c72;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .btn-secondary {
+            background: #1e3c72;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #2a5298;
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 0;
+            background: #1e3c72;
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 1rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-main {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-content">
+                    <span>📞 (11) 99999-9999 | ✉️ contato@hydrotech.com.br</span>
+                    <span>Frete Grátis para pedidos acima de R$ 500</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">AB Bombas</div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar produtos..." id="searchInput">
+                    <button class="search-btn" onclick="searchProducts()">🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#" onclick="toggleLogin()">👤 Login</a>
+                    <a href="#" onclick="toggleCart()">🛒 Carrinho (<span id="cartCount">0</span>)</a>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#products">Produtos</a></li>
+                    <li><a href="#categories">Categorias</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Bombas D'Água Profissionais</h1>
+                <p>Soluções completas para piscinas, poços artesianos e sistemas hidráulicos</p>
+                <a href="#products" class="btn-primary">Ver Produtos</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Nossas Categorias</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">🏊</div>
+                    <h3>Bombas para Piscina</h3>
+                    <p>Bombas centrífugas, filtros e sistemas de circulação para piscinas residenciais e comerciais</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🕳️</div>
+                    <h3>Bombas para Poço</h3>
+                    <p>Bombas submersas e sistemas de recalque para poços artesianos e semi-artesianos</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏠</div>
+                    <h3>Bombas Residenciais</h3>
+                    <p>Pressurizadores, bombas d'água para caixa d'água e sistemas domésticos</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏭</div>
+                    <h3>Bombas Industriais</h3>
+                    <p>Equipamentos robustos para aplicações industriais e comerciais de grande porte</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Produtos em Destaque</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Os produtos serão carregados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Entrega Rápida</h3>
+                    <p>Entrega em todo Brasil com prazos reduzidos</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Garantia Estendida</h3>
+                    <p>Todos os produtos com garantia de fábrica</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <h3>Suporte Técnico</h3>
+                    <p>Equipe especializada para orientações</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💳</div>
+                    <h3>Pagamento Facilitado</h3>
+                    <p>Parcelamento em até 12x sem juros</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HydroTech</h3>
+                    <p>Especialistas em bombas d'água e sistemas hidráulicos há mais de 15 anos no mercado.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Produtos</h3>
+                    <ul>
+                        <li><a href="#">Bombas para Piscina</a></li>
+                        <li><a href="#">Bombas para Poço</a></li>
+                        <li><a href="#">Bombas Residenciais</a></li>
+                        <li><a href="#">Bombas Industriais</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Atendimento</h3>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Política de Troca</a></li>
+                        <li><a href="#">Garantia</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>📞 (11) 99999-9999</li>
+                        <li>✉️ contato@hydrotech.com.br</li>
+                        <li>📍 São Paulo - SP</li>
+                        <li>🕒 Seg-Sex: 8h às 18h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HydroTech. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados dos produtos (simulando um banco de dados)
+        const products = [
+            {
+                id: 1,
+                name: "Bomba Centrífuga 1/2 CV",
+                description: "Bomba para piscina até 50m³",
+                price: "R$ 450,00",
+                category: "piscina",
+                icon: "🏊"
+            },
+            {
+                id: 2,
+                name: "Bomba Submersa 1 CV",
+                description: "Para poços de até 100m de profundidade",
+                price: "R$ 850,00",
+                category: "poco",
+                icon: "🕳️"
+            },
+            {
+                id: 3,
+                name: "Pressurizador Residencial",
+                description: "Aumenta pressão da água em residências",
+                price: "R$ 320,00",
+                category: "residencial",
+                icon: "🏠"
+            },
+            {
+                id: 4,
+                name: "Bomba Industrial 5 CV",
+                description: "Para aplicações industriais pesadas",
+                price: "R$ 2.500,00",
+                category: "industrial",
+                icon: "🏭"
+            },
+            {
+                id: 5,
+                name: "Bomba Auto-Aspirante",
+                description: "Para captação de água limpa",
+                price: "R$ 380,00",
+                category: "residencial",
+                icon: "💧"
+            },
+            {
+                id: 6,
+                name: "Bomba Solar para Poço",
+                description: "Energia solar para poços artesianos",
+                price: "R$ 1.200,00",
+                category: "poco",
+                icon: "☀️"
+            }
+        ];
+
+        let cart = [];
+
+        // Carregar produtos na página
+        function loadProducts(productsToShow = products) {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = '';
+
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">${product.icon}</div>
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        <div class="product-price">${product.price}</div>
+                        <button class="btn-secondary" onclick="addToCart(${product.id})">
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // Adicionar produto ao carrinho
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cart.push(product);
+                updateCartCount();
+                alert(`${product.name} adicionado ao carrinho!`);
+            }
+        }
+
+        // Atualizar contador do carrinho
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        // Buscar produtos
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+            loadProducts(filteredProducts);
+        }
+
+        // Enter para buscar
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+
+        // Toggle do carrinho
+        function toggleCart() {
+            if (cart.length === 0) {
+                alert('Carrinho vazio!');
+                return;
+            }
+            
+            let cartItems = 'Itens no carrinho:\n\n';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const price = parseFloat(item.price.replace('R$ ', '').replace('.', '').replace(',', '.'));
+                total += price;
+                cartItems += `${index + 1}. ${item.name} - ${item.price}\n`;
+            });
+            
+            cartItems += `\nTotal: R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+            alert(cartItems);
+        }
+
+        // Toggle do login
+        function toggleLogin() {
+            alert('Funcionalidade de login será implementada no backend!');
+        }
+
+        // Smooth scroll para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Carregar produtos quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+        });
+
+        // Animação de scroll para revelar elementos
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.category-card, .product-card, .feature');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.style.opacity = '1';
+                    reveal.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Inicializar animações
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.category-card, .product-card, .feature');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Executar uma vez no carregamento
+        });
+    </script>
+</body>
+</html>
