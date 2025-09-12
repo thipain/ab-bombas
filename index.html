@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
+            background: #f7f8fa;
         }
 
         /* Header */
@@ -22,13 +24,7 @@
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-top {
-            background: rgba(0,0,0,0.1);
-            padding: 0.5rem 0;
-            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .container {
@@ -41,6 +37,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
         }
 
         .header-main {
@@ -51,15 +49,21 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .search-bar {
             flex: 1;
-            max-width: 400px;
-            margin: 0 2rem;
+            max-width: 420px;
+            margin: 0 1.5rem;
             position: relative;
         }
 
@@ -69,42 +73,47 @@
             border: none;
             border-radius: 25px;
             font-size: 1rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
         }
 
         .search-btn {
             position: absolute;
-            right: 5px;
-            top: 5px;
+            right: 6px;
+            top: 6px;
             background: #ff6b35;
             border: none;
-            padding: 7px 15px;
-            border-radius: 20px;
+            padding: 7px 12px;
+            border-radius: 18px;
             color: white;
             cursor: pointer;
+            transition: background 0.2s ease;
         }
 
-        .user-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+        .search-btn:hover {
+            background: #e55a2e;
         }
 
         .user-actions a {
             color: white;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 8px 12px;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: background 0.2s ease;
         }
 
         .user-actions a:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Navigation */
         nav {
-            background: rgba(0,0,0,0.1);
-            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.06);
+            padding: 0.6rem 0;
         }
 
         .nav-menu {
@@ -112,265 +121,201 @@
             list-style: none;
             justify-content: space-between;
             width: 100%;
-            padding: 0 2rem;
+            gap: 1rem;
         }
 
         .nav-menu li a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.2s ease;
+            padding: 8px 16px;
+            border-radius: 4px;
         }
 
         .nav-menu li a:hover {
-            color: #ff6b35;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23e8f4f8" width="1200" height="400"/><path fill="%23b3d9e8" d="M0,200 Q300,150 600,200 T1200,200 V400 H0 V200Z"/></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23e8f4f8" width="1200" height="400"/><path fill="%23b3d9e8" d="M0,200 Q300,150 600,200 T1200,200 V400 H0 V200Z"/></svg>');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 360px;
             display: flex;
             align-items: center;
             color: white;
             text-align: center;
+            margin-bottom: 2rem;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            overflow: hidden;
         }
 
         .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
         }
 
         .btn-primary {
             background: #ff6b35;
             color: white;
-            padding: 15px 30px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
+            border-radius: 6px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s;
             text-decoration: none;
             display: inline-block;
+            transition: all 0.2s ease;
         }
 
         .btn-primary:hover {
-            background: #e55a2b;
+            background: #e55a2e;
+            transform: translateY(-1px);
         }
 
-        /* Categories */
-        .categories {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-
+        /* Sections */
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 1.8rem;
+            margin: 1.5rem 0;
             color: #1e3c72;
         }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .category-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        /* Products */
+        /* Product grid - Otimizado para performance */
         .products {
-            padding: 4rem 0;
+            padding: 2rem 0 4rem;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            align-items: stretch;
         }
 
         .product-card {
-            background: white;
+            width: 310px;
+            min-height: 310px;
+            background: #fff;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 12px rgba(11, 22, 39, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            will-change: transform;
+            /* Otimização para GPU */
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(11, 22, 39, 0.12);
+        }
+
+        .product-card img {
+            max-width: 300px;
+            max-height: 300px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            aspect-ratio: 3 / 4;
+            object-fit: contain;
+            background: #fff;
+            padding: 10px;
+            display: block;
         }
 
         .product-info {
-            padding: 1.5rem;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
         }
 
         .product-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
             color: #1e3c72;
+            line-height: 1.2;
+            transition: color 0.2s ease;
+        }
+
+        .product-card:hover .product-title {
+            color: #ff6b35;
+        }
+
+        .category-name {
+            font-size: 0.78rem;
+            color: #888;
+            margin-bottom: 8px;
         }
 
         .product-description {
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-        
-        .category-name {
-            font-size: 0.8rem;
-            color: #999;
-            margin-bottom: 0.5rem;
+            display: none;
         }
 
         .product-price {
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-size: 1.05rem;
+            font-weight: 800;
             color: #ff6b35;
-            margin-bottom: 1rem;
+            margin: 8px 0 12px;
         }
 
         .btn-secondary {
             background: #1e3c72;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             width: 100%;
-            transition: background 0.3s;
+            transition: background 0.2s ease;
+            font-weight: 600;
         }
 
         .btn-secondary:hover {
             background: #2a5298;
         }
 
-        /* Features */
-        .features {
-            padding: 4rem 0;
-            background: #1e3c72;
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ff6b35;
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #ff6b35;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section ul li a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section ul li a:hover {
-            color: #ff6b35;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #555;
-            padding-top: 1rem;
-            text-align: center;
-            color: #ccc;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .header-main {
-                flex-direction: column;
-                gap: 1rem;
+        /* Responsive tweaks */
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
 
-            .search-bar {
-                margin: 0;
-                max-width: 100%;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .nav-menu {
-                flex-wrap: wrap;
-                gap: 1rem;
+            .product-card {
+                width: 100%;
             }
         }
-        
+
+        @media (max-width: 420px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                height: 220px;
+            }
+
+            .product-card {
+                width: 100%;
+            }
+        }
+
+        /* Cart modal - Simplificado */
         .cart-modal {
             display: none;
             position: fixed;
@@ -380,95 +325,164 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .cart-content {
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 8% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
+            width: 92%;
+            max-width: 520px;
             border-radius: 8px;
             position: relative;
+            animation: slideUp 0.3s ease;
         }
-        
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 26px;
             cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #666;
+            transition: color 0.2s ease;
         }
 
-        .close-btn:hover, .close-btn:focus {
-            color: black;
-            text-decoration: none;
+        .close-btn:hover {
+            color: #dc3545;
         }
 
-        .cart-items li {
-            list-style: none;
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .cart-total {
-            font-weight: bold;
-            text-align: right;
-            margin-top: 20px;
-            font-size: 1.2rem;
-        }
         .remove-from-cart-btn {
             background-color: #dc3545;
             color: white;
             border: none;
-            padding: 5px 10px;
+            padding: 6px 10px;
             border-radius: 4px;
             cursor: pointer;
+            transition: background 0.2s ease;
         }
+
+        .remove-from-cart-btn:hover {
+            background-color: #c82333;
+        }
+
         .checkout-btn {
             display: block;
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             background-color: #28a745;
-            color: white;
-            border: none;
+            color: #fff;
             border-radius: 8px;
-            font-size: 1.2rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 20px;
+            transition: background 0.2s ease;
+            margin-top: 15px;
         }
 
+        .checkout-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Lazy loading optimization - apenas para elementos visíveis */
+        .product-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Redução de motion para usuários que preferem */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Otimizações de performance */
+        .product-grid {
+            contain: layout style paint;
+        }
+
+        .product-card {
+            contain: layout style paint;
+        }
+
+        /* Focus states para acessibilidade */
+        button:focus,
+        input:focus,
+        a:focus {
+            outline: 2px solid #ff6b35;
+            outline-offset: 2px;
+        }
+
+        /* Custom scrollbar simplificado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e3c72;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2a5298;
+        }
     </style>
 </head>
+
 <body>
     <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="header-top-content">
-                    <span>📞 (11) 99999-9000 | ✉️ contato@abbombas.com.br</span>
-                    <span>Frete Grátis para pedidos acima de R$ 500</span>
-                </div>
-            </div>
-        </div>
-        
         <div class="container">
+            <div class="header-top-content">
+                <span>📞 (11) 99999-9000 | ✉️ contato@abbombas.com.br</span>
+                <span style="color: #ffd5bf;">Frete Grátis para pedidos acima de R$ 500</span>
+            </div>
+
             <div class="header-main">
                 <div class="logo">AB Bombas</div>
-                
+
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar produtos..." id="searchInput">
                     <button class="search-btn" onclick="searchProducts()">🔍</button>
                 </div>
-                
+
                 <div class="user-actions">
                     <a href="#" onclick="toggleCart()">🛒 Carrinho (<span id="cartCount">0</span>)</a>
                 </div>
             </div>
-            
+
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#home">Início</a></li>
@@ -491,90 +505,33 @@
         </div>
     </section>
 
-    <section class="categories" id="categories">
-        <div class="container">
-            <h2 class="section-title">Nossas Categorias</h2>
-            <div class="category-grid" id="categories-container">
-                </div>
-        </div>
-    </section>
-
-    <section class="products" id="products">
-        <div class="container">
+    <main class="container">
+        <section class="products" id="products">
             <h2 class="section-title">Produtos em Destaque</h2>
-            <div class="product-grid" id="products-container">
-                </div>
-        </div>
-    </section>
+            <div class="product-grid" id="products-container"></div>
+        </section>
+    </main>
 
-    <section class="features">
+    <footer style="margin-top: 2rem; padding: 2rem 0; background:#222; color:#fff;">
         <div class="container">
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">🚚</div>
-                    <h3>Entrega Rápida</h3>
-                    <p>Entrega em todo Brasil com prazos reduzidos</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Garantia Estendida</h3>
-                    <p>Todos os produtos com garantia de fábrica</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💬</div>
-                    <h3>Suporte Técnico</h3>
-                    <p>Equipe especializada para orientações</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💳</div>
-                    <h3>Pagamento Facilitado</h3>
-                    <p>Parcelamento em até 12x sem juros</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>AB BOMBAS</h3>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1rem;">
+                <div>
+                    <h3 style="color:#ffb79a;">AB BOMBAS</h3>
                     <p>Especialistas em bombas d'água e sistemas hidráulicos há mais de 15 anos no mercado.</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Produtos</h3>
-                    <ul>
-                        <li><a href="#">Bombas para Piscina</a></li>
-                        <li><a href="#">Bombas para Poço</a></li>
-                        <li><a href="#">Bombas Residenciais</a></li>
-                        <li><a href="#">Bombas Industriais</a></li>
-                    </ul>
+                <div>
+                    <h4>Contato</h4>
+                    <p>📞 (11) 99999-9000<br>✉️ contato@abbombas.com.br</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Atendimento</h3>
-                    <ul>
-                        <li><a href="#">Central de Ajuda</a></li>
-                        <li><a href="#">Política de Troca</a></li>
-                        <li><a href="#">Garantia</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
+                <div>
+                    <h4>Produtos</h4>
+                    <p>Bombas para Piscina, Poço, Residenciais e Industriais</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Contato</h3>
-                    <ul>
-                        <li>📞 (11) 99999-9000</li>
-                        <li>✉️ contato@abbombas.com.br</li>
-                        <li>📍 São Paulo - SP</li>
-                        <li>🕒 Seg-Sex: 8h às 18h</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AB bombas. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
-    
+
+    <!-- Cart modal -->
     <div id="cart-modal" class="cart-modal">
         <div class="cart-content">
             <span class="close-btn" onclick="toggleCart()">&times;</span>
@@ -585,37 +542,22 @@
         </div>
     </div>
 
-
     <script>
         const API_CATEGORIES_URL = 'http://localhost/ab-bombas/api/categorias.php';
         const API_PRODUCTS_URL = 'http://localhost/ab-bombas/api/produtos.php';
 
         let cart = [];
 
-        // Função para carregar e exibir as categorias
         async function loadCategories() {
             try {
                 const response = await fetch(API_CATEGORIES_URL);
                 const categories = await response.json();
-                const container = document.getElementById('categories-container');
-                container.innerHTML = '';
-
-                categories.forEach(category => {
-                    const card = document.createElement('div');
-                    card.className = 'category-card reveal';
-                    card.innerHTML = `
-                        <div class="category-icon" style="background-color: ${category.cor || '#2a5298'};"></div>
-                        <h3>${category.nome}</h3>
-                        <p>${category.descricao}</p>
-                    `;
-                    container.appendChild(card);
-                });
+                // implementação simples: não exibimos no momento
             } catch (error) {
                 console.error('Erro ao carregar categorias:', error);
             }
         }
 
-        // Função para carregar e exibir os produtos
         async function loadProducts() {
             try {
                 const response = await fetch(API_PRODUCTS_URL);
@@ -625,55 +567,66 @@
 
                 products.forEach(product => {
                     const card = document.createElement('div');
-                    card.className = 'product-card reveal';
+                    card.className = 'product-card';
+
+                    // garante que exista uma imagem mesmo que o backend não forneça
+                    const imageUrl = product.imagem_url ? product.imagem_url : 'https://via.placeholder.com/300x400?text=Sem+imagem';
+
                     card.innerHTML = `
-                        <img src="${product.imagem_url}" alt="${product.nome}">
+                        <img src="${imageUrl}" alt="${product.nome}">
                         <div class="product-info">
-                            <h3>${product.nome}</h3>
-                            <p class="category-name">${product.categoria_nome}</p>
-                            <p class="product-price">R$ ${parseFloat(product.preco).toFixed(2).replace('.', ',')}</p>
-                            <button class="btn-secondary add-to-cart-btn" data-id="${product.id}" data-name="${product.nome}" data-price="${product.preco}">Adicionar ao Carrinho</button>
+                            <div>
+                                <h3 class="product-title">${product.nome}</h3>
+                                <p class="category-name">${product.categoria_nome || ''}</p>
+                                <p class="product-description">${product.descricao || ''}</p>
+                            </div>
+
+                            <div>
+                                <p class="product-price">R$ ${parseFloat(product.preco || 0).toFixed(2).replace('.', ',')}</p>
+                                <button class="btn-secondary add-to-cart-btn" 
+                                    data-id="${product.id}" 
+                                    data-name="${product.nome}" 
+                                    data-price="${product.preco}">
+                                    Comprar
+                                </button>
+                            </div>
                         </div>
                     `;
+
                     container.appendChild(card);
                 });
 
+                // adiciona os listeners após renderizar
                 document.querySelectorAll('.add-to-cart-btn').forEach(button => {
                     button.addEventListener('click', addToCart);
                 });
+
             } catch (error) {
                 console.error('Erro ao carregar produtos:', error);
             }
         }
-        
-        // Função para adicionar um produto ao carrinho
+
         function addToCart(event) {
             const productId = event.target.getAttribute('data-id');
             const productName = event.target.getAttribute('data-name');
-            const productPrice = parseFloat(event.target.getAttribute('data-price'));
+            const productPrice = parseFloat(event.target.getAttribute('data-price')) || 0;
 
             const existingItem = cart.find(item => item.id === productId);
 
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    price: productPrice,
-                    quantity: 1
-                });
+                cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
             }
             updateCartUI();
             alert(`${productName} adicionado ao carrinho!`);
         }
 
-        // Função para atualizar a interface do carrinho
         function updateCartUI() {
             const cartList = document.querySelector('.cart-items');
             const cartCountElement = document.getElementById('cartCount');
             const cartTotalElement = document.getElementById('cart-total');
-            
+
             let total = 0;
             let totalItems = 0;
 
@@ -681,14 +634,12 @@
             cart.forEach(item => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `${item.name} (${item.quantity}x) - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}`;
-                
+
                 const removeBtn = document.createElement('button');
                 removeBtn.textContent = 'Remover';
                 removeBtn.className = 'remove-from-cart-btn';
-                removeBtn.onclick = () => {
-                    removeFromCart(item.id);
-                };
-                
+                removeBtn.onclick = () => { removeFromCart(item.id); };
+
                 listItem.appendChild(removeBtn);
                 cartList.appendChild(listItem);
                 total += item.price * item.quantity;
@@ -698,131 +649,63 @@
             cartTotalElement.textContent = total.toFixed(2).replace('.', ',');
         }
 
-        // Função para remover um item do carrinho
         function removeFromCart(productId) {
             const itemIndex = cart.findIndex(item => item.id === productId);
             if (itemIndex > -1) {
                 const item = cart[itemIndex];
-                if (item.quantity > 1) {
-                    item.quantity -= 1;
-                } else {
-                    cart.splice(itemIndex, 1);
-                }
+                if (item.quantity > 1) item.quantity -= 1; else cart.splice(itemIndex, 1);
             }
             updateCartUI();
         }
 
-        // Função para alternar a visibilidade do modal do carrinho
         function toggleCart() {
             const cartModal = document.getElementById('cart-modal');
-            if (cartModal.style.display === "block") {
-                cartModal.style.display = "none";
-            } else {
-                cartModal.style.display = "block";
-            }
+            cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Gerar e enviar a mensagem via WhatsApp
-        document.getElementById('checkout-btn').addEventListener('click', function() {
-            if (cart.length === 0) {
-                alert('Seu carrinho está vazio!');
-                return;
-            }
+        document.getElementById('checkout-btn').addEventListener('click', function () {
+            if (cart.length === 0) { alert('Seu carrinho está vazio!'); return; }
 
             const nomeCliente = prompt("Por favor, digite seu nome:");
             const telefoneCliente = prompt("Por favor, digite seu telefone:");
 
-            if (!nomeCliente || !telefoneCliente) {
-                alert("Nome e telefone são obrigatórios para a finalização do pedido.");
-                return;
-            }
+            if (!nomeCliente || !telefoneCliente) { alert("Nome e telefone são obrigatórios para a finalização do pedido."); return; }
 
             let message = `*Novo Pedido - AB Bombas*\n\n`;
             message += `*Cliente:* ${nomeCliente}\n`;
             message += `*Telefone:* ${telefoneCliente}\n\n`;
             message += `*Itens do Pedido:*\n`;
 
-            cart.forEach(item => {
-                const itemTotal = (item.price * item.quantity).toFixed(2);
-                message += `- ${item.name} (${item.quantity}x) - R$ ${itemTotal.replace('.', ',')}\n`;
-            });
+            cart.forEach(item => { const itemTotal = (item.price * item.quantity).toFixed(2); message += `- ${item.name} (${item.quantity}x) - R$ ${itemTotal.replace('.', ',')}\n`; });
 
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             message += `\n*Total:* R$ ${total.toFixed(2).replace('.', ',')}`;
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/+5511992810035?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/SEU_NUMERO_DE_TELEFONE_AQUI?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
         });
 
-        // Lógica de busca de produtos
         function searchProducts() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const productCards = document.querySelectorAll('#products-container .product-card');
 
             productCards.forEach(card => {
-                const productName = card.querySelector('h3').textContent.toLowerCase();
-                const productDescription = card.querySelector('.product-description').textContent.toLowerCase();
-                
-                if (productName.includes(searchTerm) || productDescription.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                const productName = card.querySelector('.product-title').textContent.toLowerCase();
+                const productDescriptionEl = card.querySelector('.product-description');
+                const productDescription = productDescriptionEl ? productDescriptionEl.textContent.toLowerCase() : '';
+
+                if (productName.includes(searchTerm) || productDescription.includes(searchTerm)) card.style.display = 'block'; else card.style.display = 'none';
             });
         }
 
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchProducts();
-            }
-        });
+        document.getElementById('searchInput').addEventListener('keypress', function (e) { if (e.key === 'Enter') searchProducts(); });
 
-        // Smooth scroll para âncoras
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animação de scroll para revelar elementos
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.category-card, .product-card, .feature');
-            
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.style.opacity = '1';
-                    reveal.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
-        // Inicializar animações e carregar dados das APIs
-        document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.category-card, .product-card, .feature');
-            elements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            });
-            
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-
+        document.addEventListener('DOMContentLoaded', function () {
             loadCategories();
             loadProducts();
         });
     </script>
 </body>
+
 </html>
